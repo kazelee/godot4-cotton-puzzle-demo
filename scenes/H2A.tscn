@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://btd21kruuy8pl"]
+
+[ext_resource type="PackedScene" uid="uid://f3x45nil74vb" path="res://scenes/Scene.tscn" id="1_rbhlk"]
+[ext_resource type="Texture2D" uid="uid://b7e44mhlktnh1" path="res://assets/H2A/roomsignBG.png" id="2_vjov3"]
+[ext_resource type="Script" path="res://scenes/H2A.gd" id="3_falds"]
+[ext_resource type="Script" path="res://objects/Teleporter.gd" id="3_irxmx"]
+[ext_resource type="Script" path="res://mini-game/H2ABoard.gd" id="4_f1aoc"]
+[ext_resource type="Resource" uid="uid://2e0wfn6njem0" path="res://mini-game/easy.tres" id="5_axrc5"]
+[ext_resource type="Script" path="res://objects/Interactable.gd" id="6_mowuc"]
+[ext_resource type="Texture2D" uid="uid://c0w253katngp0" path="res://assets/H2A/gearbg.png" id="7_41jro"]
+[ext_resource type="Texture2D" uid="uid://jllsu8ccxl74" path="res://assets/H2A/gear.png" id="8_4hwnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlxae"]
+radius = 68.4251
+
+[node name="Background" instance=ExtResource("1_rbhlk")]
+texture = ExtResource("2_vjov3")
+script = ExtResource("3_falds")
+music_override = "res://assets/Music/OpenRoad.mp3"
+
+[node name="ToH2" type="Area2D" parent="." index="0"]
+position = Vector2(-812, -430)
+script = ExtResource("3_irxmx")
+target_path = "res://scenes/H2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToH2" index="0"]
+position = Vector2(4, 2)
+shape = SubResource("CircleShape2D_qlxae")
+
+[node name="Board" type="Node2D" parent="." index="1"]
+position = Vector2(-37, 18)
+script = ExtResource("4_f1aoc")
+radius = 350.0
+config = ExtResource("5_axrc5")
+
+[node name="Reset" type="Area2D" parent="." index="2"]
+position = Vector2(733, -227)
+script = ExtResource("6_mowuc")
+texture = ExtResource("7_41jro")
+
+[node name="Gear" type="Sprite2D" parent="Reset" index="2"]
+texture = ExtResource("8_4hwnh")
+
+[connection signal="interact" from="Reset" to="." method="_on_reset_interact"]

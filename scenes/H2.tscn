@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://bdkv4egpwfne3"]
+
+[ext_resource type="PackedScene" uid="uid://f3x45nil74vb" path="res://scenes/Scene.tscn" id="1_3fuiq"]
+[ext_resource type="Texture2D" uid="uid://dmegvchrok4fw" path="res://assets/H2/H2.png" id="2_y5cyf"]
+[ext_resource type="Script" path="res://objects/Teleporter.gd" id="3_qu2my"]
+[ext_resource type="Script" path="res://scenes/H2.gd" id="3_uk4cd"]
+[ext_resource type="Script" path="res://objects/Interactable.gd" id="5_0js82"]
+[ext_resource type="PackedScene" uid="uid://c0kd0qs50pkp3" path="res://ui/dialogue_bubble.tscn" id="6_ruv3l"]
+[ext_resource type="Script" path="res://objects/SceneItem.gd" id="7_v21ug"]
+[ext_resource type="Resource" uid="uid://djwlotc4nd35" path="res://items/key.tres" id="8_mgw8e"]
+[ext_resource type="Texture2D" uid="uid://l4we2ff71d4h" path="res://assets/H2/key.png" id="9_oiaua"]
+[ext_resource type="Script" path="res://objects/FlagSwitch.gd" id="10_u7myq"]
+[ext_resource type="Texture2D" uid="uid://dubaya7nirbp2" path="res://assets/H2/door.png" id="11_2lec5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5udj"]
+radius = 56.0357
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r84xj"]
+size = Vector2(286, 560)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg0da"]
+size = Vector2(208, 392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp1g4"]
+size = Vector2(265.875, 590.625)
+
+[node name="Background" instance=ExtResource("1_3fuiq")]
+texture = ExtResource("2_y5cyf")
+script = ExtResource("3_uk4cd")
+
+[node name="ToH1" type="Area2D" parent="." index="0"]
+position = Vector2(-674, -332)
+script = ExtResource("3_qu2my")
+target_path = "res://scenes/H1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToH1" index="0"]
+shape = SubResource("CircleShape2D_k5udj")
+
+[node name="ToH4" type="Area2D" parent="." index="1"]
+position = Vector2(830, -74)
+rotation = 3.14159
+script = ExtResource("3_qu2my")
+target_path = "res://scenes/H4.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToH4" index="0"]
+position = Vector2(12, -17)
+shape = SubResource("RectangleShape2D_r84xj")
+
+[node name="FlagSwitch" type="Node2D" parent="." index="2"]
+script = ExtResource("10_u7myq")
+flag = "h2a_unlocked"
+
+[node name="ToH2A" type="Area2D" parent="FlagSwitch" index="0"]
+position = Vector2(19, -225)
+script = ExtResource("3_qu2my")
+target_path = "res://scenes/H2A.tscn"
+texture = ExtResource("11_2lec5")
+
+[node name="ToH3" type="Area2D" parent="FlagSwitch" index="1"]
+visible = false
+position = Vector2(41, -209)
+script = ExtResource("3_qu2my")
+target_path = "res://scenes/H3.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagSwitch/ToH3" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_sg0da")
+
+[node name="Granny" type="Area2D" parent="." index="3"]
+position = Vector2(-358, -18)
+script = ExtResource("5_0js82")
+allow_item = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Granny" index="0"]
+position = Vector2(-4.9375, 24.6875)
+shape = SubResource("RectangleShape2D_qp1g4")
+
+[node name="DialogueBubble" parent="Granny" index="1" instance=ExtResource("6_ruv3l")]
+visible = false
+offset_left = 63.0
+offset_top = 59.0
+offset_right = 63.0
+offset_bottom = 59.0
+
+[node name="SceneItem" type="Area2D" parent="." index="4"]
+position = Vector2(80, 479)
+script = ExtResource("7_v21ug")
+item = ExtResource("8_mgw8e")
+texture = ExtResource("9_oiaua")
+
+[connection signal="interact" from="Granny" to="." method="_on_granny_interact"]

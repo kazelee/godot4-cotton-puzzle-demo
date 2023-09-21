@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://by43hfca2ks21"]
+
+[ext_resource type="PackedScene" uid="uid://f3x45nil74vb" path="res://scenes/Scene.tscn" id="1_clrsn"]
+[ext_resource type="Texture2D" uid="uid://k61vk6pqrtg5" path="res://assets/H3/H3.png" id="2_ddxax"]
+[ext_resource type="Script" path="res://objects/Teleporter.gd" id="3_cnm1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4lyh"]
+size = Vector2(332, 362)
+
+[node name="Background" instance=ExtResource("1_clrsn")]
+texture = ExtResource("2_ddxax")
+
+[node name="ToH2" type="Area2D" parent="." index="0"]
+position = Vector2(830, 360)
+script = ExtResource("3_cnm1y")
+target_path = "res://scenes/H2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToH2" index="0"]
+position = Vector2(-30, 14)
+shape = SubResource("RectangleShape2D_t4lyh")

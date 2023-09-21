@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://biixd4eulm4a6"]
+
+[ext_resource type="Script" path="res://ui/inventory.gd" id="1_nxrbk"]
+[ext_resource type="FontFile" uid="uid://56fgt4k2cbq3" path="res://assets/UI/SCJSKangKang.ttf" id="2_siogv"]
+[ext_resource type="Texture2D" uid="uid://duej8guxiroe3" path="res://assets/UI/道具指示文字背景黑块.png" id="3_j10i8"]
+[ext_resource type="Texture2D" uid="uid://bxwi311tbmqnw" path="res://assets/UI/道具栏的左箭头.png" id="4_a0b57"]
+[ext_resource type="Texture2D" uid="uid://epb8vgx4epmv" path="res://assets/UI/道具栏的左箭头按下.png" id="5_4k0wy"]
+[ext_resource type="Texture2D" uid="uid://b1fyruplpnfo3" path="res://assets/UI/道具栏的左箭头不可用.png" id="6_ssiv7"]
+[ext_resource type="Texture2D" uid="uid://b5pd21fi0vcwe" path="res://assets/UI/道具栏.png" id="7_oogr7"]
+[ext_resource type="Texture2D" uid="uid://b83k3hl5wtdi" path="res://assets/H2/key_prop.png" id="8_nb5lb"]
+[ext_resource type="Texture2D" uid="uid://c8nfgqmx80ari" path="res://assets/UI/抓着道具的手.png" id="9_5h1ep"]
+[ext_resource type="Texture2D" uid="uid://d15laalatkyqo" path="res://assets/UI/道具栏的右箭头.png" id="10_6rbxl"]
+[ext_resource type="Texture2D" uid="uid://511hp0cfed6a" path="res://assets/UI/道具栏的右箭头按下.png" id="11_eqcix"]
+[ext_resource type="Texture2D" uid="uid://coggmwj0c8r2m" path="res://assets/UI/道具栏的右箭头不可用.png" id="12_jhl5o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_njxex"]
+texture = ExtResource("3_j10i8")
+texture_margin_left = 40.0
+texture_margin_top = 32.0
+texture_margin_right = 36.0
+texture_margin_bottom = 26.0
+
+[node name="Inventory" type="VBoxContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -371.0
+offset_top = -344.0
+offset_right = -17.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+script = ExtResource("1_nxrbk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_siogv")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxTexture_njxex")
+text = "道具描述"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Label"]
+wait_time = 1.5
+
+[node name="ItemBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Prev" type="TextureButton" parent="ItemBar"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_a0b57")
+texture_pressed = ExtResource("5_4k0wy")
+texture_disabled = ExtResource("6_ssiv7")
+
+[node name="Use" type="TextureButton" parent="ItemBar"]
+layout_mode = 2
+texture_normal = ExtResource("7_oogr7")
+
+[node name="Prop" type="Sprite2D" parent="ItemBar/Use"]
+z_index = 1
+position = Vector2(113, 104)
+texture = ExtResource("8_nb5lb")
+
+[node name="Hand" type="Sprite2D" parent="ItemBar/Use"]
+z_index = 1
+position = Vector2(167, 174)
+texture = ExtResource("9_5h1ep")
+
+[node name="Next" type="TextureButton" parent="ItemBar"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("10_6rbxl")
+texture_pressed = ExtResource("11_eqcix")
+texture_disabled = ExtResource("12_jhl5o")
+
+[connection signal="timeout" from="Label/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="ItemBar/Prev" to="." method="_on_prev_pressed"]
+[connection signal="pressed" from="ItemBar/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="ItemBar/Next" to="." method="_on_next_pressed"]

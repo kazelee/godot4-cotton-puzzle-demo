@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://djwlotc4nd35"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_8vfwb"]
+[ext_resource type="Texture2D" uid="uid://b83k3hl5wtdi" path="res://assets/H2/key_prop.png" id="1_206x1"]
+[ext_resource type="Texture2D" uid="uid://l4we2ff71d4h" path="res://assets/H2/key.png" id="2_dhm7r"]
+
+[resource]
+script = ExtResource("1_8vfwb")
+description = "信箱钥匙"
+prop_texture = ExtResource("1_206x1")
+scene_texture = ExtResource("2_dhm7r")

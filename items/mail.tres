@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cd8knq2sw5u5e"]
+
+[ext_resource type="Texture2D" uid="uid://c6uiqtlx8fsgl" path="res://assets/H4/mail_prop.png" id="1_4gg6y"]
+[ext_resource type="Script" path="res://items/Item.gd" id="1_ajqkp"]
+[ext_resource type="Texture2D" uid="uid://cu2wcejvkxyxb" path="res://assets/H4/mail_piece.png" id="2_muurl"]
+
+[resource]
+script = ExtResource("1_ajqkp")
+description = "船票"
+prop_texture = ExtResource("1_4gg6y")
+scene_texture = ExtResource("2_muurl")

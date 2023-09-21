@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0kd0qs50pkp3"]
+
+[ext_resource type="Script" path="res://ui/dialogue_bubble.gd" id="1_7t0ca"]
+[ext_resource type="FontFile" uid="uid://56fgt4k2cbq3" path="res://assets/UI/SCJSKangKang.ttf" id="2_8mnst"]
+[ext_resource type="Texture2D" uid="uid://vujp0fuleyyt" path="res://assets/UI/对话框点9图.9.png" id="3_ugtjr"]
+[ext_resource type="Texture2D" uid="uid://do45xowvn7m7d" path="res://assets/UI/对话框把手.png" id="4_1t57q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8wk61"]
+texture = ExtResource("3_ugtjr")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 31.0
+texture_margin_bottom = 28.0
+
+[node name="DialogueBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7t0ca")
+
+[node name="Content" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -196.0
+offset_right = 581.0
+offset_bottom = -21.0
+grow_vertical = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.199219, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8mnst")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxTexture_8wk61")
+text = "垂死梦中惊坐起，笑问客从何处来。"
+autowrap_mode = 1
+
+[node name="Handle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -59.0
+offset_right = 61.0
+grow_vertical = 0
+texture = ExtResource("4_1t57q")
+flip_h = true
+
+[connection signal="gui_input" from="Content" to="." method="_on_content_gui_input"]
