@@ -1,4 +1,4 @@
-# godot4_cotton_puzzle_demo
+# godot4-cotton-puzzle-demo
 基于 timothyqiu 的“《迷失岛2》游戏框架开发”教程，在 Godot 4 中复刻
 
 【强调】只是个人学习项目归档，仅供参考
